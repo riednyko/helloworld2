@@ -14,11 +14,11 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 public class SamplePart {
 
-	private TableViewer tableViewer;
 
 	@Inject
 	private MPart part;
@@ -27,29 +27,20 @@ public class SamplePart {
 	public void createComposite(Composite parent) {
 		parent.setLayout(new GridLayout(1, false));
 
-		Text txtInput = new Text(parent, SWT.BORDER);
-		txtInput.setMessage("Enter text to mark part as dirty");
-		txtInput.addModifyListener(e -> part.setDirty(true));
-		txtInput.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-
-		tableViewer = new TableViewer(parent);
-
-		tableViewer.setContentProvider(ArrayContentProvider.getInstance());
-		tableViewer.setInput(createInitialDataModel());
-		tableViewer.getTable().setLayoutData(new GridData(GridData.FILL_BOTH));
+		Label label = new Label (parent, SWT.NONE);
+		label.setText ("HelloWorld!!!");
+		label.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_RED));
+		label.setLayoutData(new GridData(GridData.CENTER, GridData.CENTER, true, true));
 	}
 
 	@Focus
 	public void setFocus() {
-		tableViewer.getTable().setFocus();
+		//tableViewer.getTable().setFocus();
 	}
 
 	@Persist
 	public void save() {
-		part.setDirty(false);
+		//part.setDirty(false);
 	}
 	
-	private List<String> createInitialDataModel() {
-		return Arrays.asList("Sample item 1", "Sample item 2", "Sample item 3", "Sample item 4", "Sample item 5");
-	}
 }
