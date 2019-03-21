@@ -9,10 +9,6 @@
             application="org.eclipse.e4.ui.workbench.swt.E4Application"
             name="helloworld">
          <property
-               name="applicationCSS"
-               value="platform:/plugin/helloworld/css/default.css">
-         </property>
-         <property
                name="appName"
                value="helloworld">
          </property>

@@ -20,9 +20,13 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeItem;
 
 public class SamplePart {
 
@@ -31,11 +35,11 @@ public class SamplePart {
 
 	@PostConstruct
 	public void createComposite(Composite parent) {
-		
+
 		parent.setLayout(new GridLayout(1, true));
-		Composite first = new Composite(parent, SWT.NONE);	
+		Composite first = new Composite(parent, SWT.NONE);
 		RowLayout rowLayout = new RowLayout();
-        first.setLayout(rowLayout);
+		first.setLayout(rowLayout);
 
 		Label label = new Label(first, SWT.NONE);
 		label.setText("Name:");
@@ -43,9 +47,9 @@ public class SamplePart {
 		Text text = new Text(first, SWT.BORDER);
 		RowData layoutData = new RowData();
 		layoutData.width = 150;
-		
+
 		Button button1 = new Button(first, SWT.CHECK);
-	    button1.setText("orange");
+		button1.setText("orange");
 
 		Composite second = new Composite(parent, SWT.NONE);
 		GridLayout gridLayout = new GridLayout();
@@ -59,9 +63,9 @@ public class SamplePart {
 
 		Text gridtext = new Text(second, SWT.BORDER);
 		gridtext.setLayoutData(new GridData(GridData.BEGINNING, GridData.CENTER, true, false));
-		
+
 		Button button2 = new Button(second, SWT.CHECK);
-	    button2.setText("red");
+		button2.setText("red");
 
 		Composite third = new Composite(parent, SWT.NONE);
 		third.setLayout(new FillLayout());
@@ -81,6 +85,37 @@ public class SamplePart {
 		column2.setWidth(120);
 		column3.setWidth(160);
 		table.setHeaderVisible(true);
+
+		Composite fifth = new Composite(parent, SWT.NONE);
+		fifth.setLayout(rowLayout);
+		Label label2 = new Label(fifth, SWT.NONE);
+		label2.setText("Enter your name:");
+		Text text1 = new Text(fifth, SWT.BORDER);
+		text.setLayoutData(new RowData(100, SWT.DEFAULT));
+		Button ok = new Button(fifth, SWT.PUSH);
+		ok.setText("OK");
+
+		Composite sixth = new Composite(parent, SWT.NONE);
+		//sixth.setLayout(new FillLayout());
+		Tree tree = new Tree(sixth, SWT.BORDER);
+		tree.setSize(300, 200);
+		for (int i = 1; i < 5; i++) {
+			TreeItem iItem = new TreeItem(tree, 0);
+			iItem.setText(i+".a");
+			for (int j = 1; j < 5; j++) {
+				TreeItem jItem = new TreeItem(iItem, 0);
+				jItem.setText(j+".b");
+				for (int k = 1; k < 5; k++) {
+					TreeItem kItem = new TreeItem(jItem, 0);
+					kItem.setText(k+".c");
+					for (int l = 1; l < 5; l++) {
+						TreeItem lItem = new TreeItem(kItem, 0);
+						lItem.setText(l+".d");
+					}
+				}
+			}
+		}
+
 	}
 
 	@Focus
